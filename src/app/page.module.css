@@ -1,0 +1,100 @@
+.container {
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    min-height: 100vh;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+}
+
+.headerTitle h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--foreground);
+}
+
+.headerTitle p {
+    color: var(--muted-foreground);
+    margin-top: 0.25rem;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.statCard {
+    flex-direction: row;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.statIcon {
+    background: rgba(161, 0, 255, 0.05);
+    padding: 0.75rem;
+    border-radius: var(--radius);
+}
+
+.statCard h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.statCard p {
+    color: var(--muted-foreground);
+    font-size: 0.875rem;
+    margin: 0;
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 2rem;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.sidebarHeader h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.mainContent {
+    min-height: 600px;
+}
+
+.emptyState {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    border: 2px dashed var(--border);
+    border-radius: var(--radius);
+    color: var(--muted-foreground);
+    text-align: center;
+    padding: 2rem;
+}
+
+.emptyIcon {
+    margin-bottom: 1rem;
+    opacity: 0.2;
+}
+
+.emptyState h3 {
+    color: var(--foreground);
+    margin-bottom: 0.5rem;
+}

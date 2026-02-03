@@ -1,0 +1,55 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+
+
+model Role {
+  id        Int            @id @default(autoincrement())
+  name      String         @unique
+  templates TaskTemplate[]
+  joiners   Joiner[]
+}
+
+model TaskTemplate {
+  id           Int          @id @default(autoincrement())
+  title        String
+  stepNumber   Int
+  defaultOwner String
+  ownerEmail   String?      // New field for notifications
+  timelineDays Int
+  toolUrl      String?
+  roleId       Int
+  role         Role         @relation(fields: [roleId], references: [id])
+  activeTasks  ActiveTask[]
+}
+
+model Joiner {
+  id          Int          @id @default(autoincrement())
+  fullName    String
+  startDate   DateTime
+  status      String       @default("NOT_STARTED") // NOT_STARTED, IN_PROGRESS, COMPLETED
+  roleId      Int
+  role         Role         @relation(fields: [roleId], references: [id])
+  activeTasks ActiveTask[]
+  createdAt   DateTime     @default(now())
+}
+
+model ActiveTask {
+  id            Int          @id @default(autoincrement())
+  joinerId      Int
+  joiner        Joiner       @relation(fields: [joinerId], references: [id])
+  templateId    Int
+  template      TaskTemplate @relation(fields: [templateId], references: [id])
+  dueDate       DateTime
+  status        String       @default("PENDING") // PENDING, COMPLETED, OVERDUE
+  isNotified    Boolean      @default(false)    // New field
+  notifiedAt    DateTime?                       // New field
+  completedDate DateTime?
+}
+
